@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" ng-app="list">
+<head>
+	<meta charset="UTF-8" />
+	<title>iCloud</title>
+</head>
+<link rel="stylesheet" type="text/css" href="./css/index.css"/>
+<script src="./js/jquery.js"></script>
+<script src="./js/angular.js"></script>
+<script src="./js/index.js"></script>
+<body ng-controller="listCtrl">
+	<div class="list">
+		<div class="title">
+			<div class="icloud"></div>
+			<div class="tixing">提醒事项 ∨</div>
+			<div class="plus" title="新建提醒列表" ng-click="addList();save()"></div>
+		</div>
+		<div class="planbox">
+			<i class="plan"></i>
+			<label class="planw">已计划</label>
+		</div>
+		<div my-ul>
+			<li class="planbox" ng-repeat="v in lists track by $index" ng-init="cu=v.$index">
+				<div class="colors {{v.theme}}"></div>
+				<input type="text" class="listscon" ng-model="v.name" ng-keyup="save()">
+				<div class="wlan"></div>
+			</li>
+		</div>	
+	</div>
+	<div class="right {{list[cu].theme}}">
+		<div class="search">
+			<div class="searchimg"></div>
+			<input type="text" placeholder="搜索所有提醒" class="searchIn">
+			<div class="ming">周煦杰 ∨</div>
+			<div class="mingxk">
+				<div class="san"></div>
+				<div class="shezhi">iCloud 设置</div>
+				<div class="zhuxiao">注销</div>
+			</div>
+		</div>
+		<div class="rigtitle">
+			<div class="rigtitle1 {{lists[cu].theme}}">{{lists[cu].name}}</div>
+			<div class="xuan {{lists[cu].theme}}">选项</div>
+			<div my-sel>
+				<div class="san1"></div>
+                <input type="text" ng-model="lists[cu].name" ng-keyup="save()" class="{{lists[cu].theme}}_3">
+                <span class="listse">列表颜色</span>
+                <div class="color-sel" >
+					<div class="color-sel1 {{(lists[cu].theme===v)?v:''}}" ng-repeat="v in colors" ng-click="lists[cu].theme=v">
+						<div class="color-sel2 {{v}}" ng-click="lists[cu].theme=v;save()"></div>
+					</div>
+				</div>
+                <div class="button">
+                    <span id="del">删除</span>
+                    <span id="cancel">取消</span>
+                    <span id="shu">|</span>
+                    <span id="enter">完成</span>
+                </div>
+			</div>
+		</div>
+		<ul class="wanxiang">
+			<span class="icon"></span>
+			<li class="yiwan">已完成：0 项</li>
+			<span class="quchu {{lists[cu].theme}}">清除已完成事项</span>
+			<div class="yin {{lists[cu].theme}}">
+				<div class="yinbg {{lists[cu].theme}}"></div>
+	            <div  class="item" >
+	                <div class="iconf {{lists[cu].theme}}"></div>
+	                <div class="content">
+	                    <span></span>
+	                    <input type="text" value="" >
+	                </div>
+	                <span class="delet {{lists[cu].theme}}">删除</span>
+	            </div>
+	        </div>
+		</ul>
+		
+		<ul class="newxiang">
+			<div class="yin {{lists[cu].theme}}">
+				<div class="yinbg {{lists[cu].theme}}"></div>
+	            <div  class="item" >
+	                <div class="iconww {{lists[cu].theme}}"></div>
+	                <div class="content">
+	                    <span></span>
+	                    <input type="text" value="" >
+	                </div>
+	                <span class="delet {{lists[cu].theme}}">删除</span>
+	            </div>
+	        </div>
+			<li class="newEvent">新项目...</li>
+		</ul>
+	</div>
+</body>
+</html>
