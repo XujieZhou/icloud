@@ -389,10 +389,10 @@ body{
         font-size: 20px;
         margin-left: 80px;
         border-bottom: 1px solid rgba(0,0,0,0.1);
+        cursor: pointer;
     }
 }
 .yin{
-    
     height: 51px;
     .yinbg{
         height: 51px;
@@ -439,7 +439,6 @@ body{
         right: 50px;
         top: 10px;
         cursor: pointer;
-        display: none;
     }
 }
 .wanxiang{
@@ -456,11 +455,13 @@ body{
     margin: auto;
     cursor: pointer;
     transition: all .4s ease;
-}
-.iconmove{
     transform: rotate(30deg);
 }
+.iconmove{
+    transform: rotate(120deg);
+}
 .quchu{
+    display: none;
     position: absolute;
     top: 20px;
     right: 45px;
@@ -529,4 +530,9 @@ $m:(
     }
 }
 
-
+.yinwan{
+    display: none;
+}
+.active{
+    display: block;
+}

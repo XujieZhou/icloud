@@ -51,7 +51,7 @@
 					</div>
 				</div>
                 <div class="button">
-                    <span id="del">删除</span>
+                    <span id="del" ng-click="delet1()">删除</span>
                     <span id="cancel">取消</span>
                     <span id="shu">|</span>
                     <span id="enter">完成</span>
@@ -59,35 +59,40 @@
 			</div>
 		</div>
 		<ul class="wanxiang">
-			<span class="icon"></span>
-			<li class="yiwan">已完成：0 项</li>
-			<span class="quchu {{lists[cu].theme}}">清除已完成事项</span>
-			<div class="yin {{lists[cu].theme}}">
-				<div class="yinbg {{lists[cu].theme}}"></div>
-	            <div  class="item" >
-	                <div class="iconf {{lists[cu].theme}}"></div>
-	                <div class="content">
-	                    <span></span>
-	                    <input type="text" value="" >
-	                </div>
-	                <span class="delet {{lists[cu].theme}}">删除</span>
-	            </div>
-	        </div>
+			<div class="wantitle">
+				<span class="icon"></span>
+				<li class="yiwan">已完成：{{zong()}}项</li>
+				<span class="quchu {{lists[cu].theme}}" ng-click="clear()">清除已完成事项</span>
+			</div>
+			<div class="yinwan">
+				<div class="yin {{lists[cu].theme}}" ng-if="v.state === 1" ng-repeat="v in lists[cu].todos track by $index">
+					<div class="yinbg {{lists[cu].theme}}"></div>
+		            <div  class="item">
+		                <div class="iconf {{lists[cu].theme}}" ng-click="zhuanhua($index);save()"></div>
+		                <div class="content">
+		                    <span></span>
+		                    <input type="text" ng-model="v.title" ng-keyup="save()">
+		                </div>
+		                <span class="delet {{lists[cu].theme}}" ng-click="del(v.id)">删除</span>
+		            </div>
+		        </div>
+			</div>
+				
 		</ul>
 		
 		<ul class="newxiang">
-			<div class="yin {{lists[cu].theme}}">
+			<div class="yin {{lists[cu].theme}}" ng-if="v.state === 0" ng-repeat="v in lists[cu].todos">
 				<div class="yinbg {{lists[cu].theme}}"></div>
-	            <div  class="item" >
-	                <div class="iconww {{lists[cu].theme}}"></div>
+	            <div  class="item item-wei" >
+	                <div class="iconww {{lists[cu].theme}}" ng-click="zhuanhua($index);save()"></div>
 	                <div class="content">
 	                    <span></span>
-	                    <input type="text" value="" >
+	                    <input type="text" ng-model="v.title" ng-keyup="save()">
 	                </div>
-	                <span class="delet {{lists[cu].theme}}">删除</span>
+	                <span class="delet {{lists[cu].theme}}" ng-click="del(v.id)">删除</span>
 	            </div>
 	        </div>
-			<li class="newEvent">新项目...</li>
+			<li class="newEvent" ng-click="newadd()">新项目...</li>
 		</ul>
 	</div>
 </body>
